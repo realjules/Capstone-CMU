@@ -2,12 +2,16 @@
 \usepackage[utf8]{inputenc}
 \usepackage{geometry}
 \usepackage{graphicx}
-\usepackage{hyperref}
 \usepackage{booktabs}
 \usepackage{amsmath}
 \usepackage{listings}
 \usepackage{xcolor}
 \usepackage{enumitem}
+\usepackage{tabularx}
+\usepackage{amssymb}
+% hyperref should be loaded last
+\usepackage{hyperref}
+
 
 \geometry{a4paper, margin=0.75in}
 
@@ -49,12 +53,13 @@ The system achieved an 89\% action execution success rate and has been deployed 
 
 \section{System Architecture}
 
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=1\linewidth]{system_architecture.png}
-    \caption{High-Level Architecture}
-    \label{fig:enter-label}
-\end{figure}
+% Commented out figure due to missing image file
+% \begin{figure}[h]
+%     \centering
+%     \includegraphics[width=1\linewidth]{system_architecture.png}
+%     \caption{High-Level Architecture}
+%     \label{fig:enter-label}
+% \end{figure}
 \subsection{High-Level Architecture}
 
 Our system follows a modular architecture with four main components:
@@ -505,6 +510,100 @@ All code is documented with inline comments, and each module includes docstrings
 
 \section{Testing and Validation Results}
 
+\subsection{Achievement of Project Objectives}
+
+The following table provides a direct comparison between the key requirements and success criteria outlined in our Statement of Work and our actual project outcomes:
+
+\renewcommand{\arraystretch}{1.2}
+\begin{table}[h]
+\centering
+\begin{tabularx}{\textwidth}{|X|X|X|c|}
+\hline
+\textbf{SoW Requirement/KPI} & \textbf{Target} & \textbf{Actual Achievement} & \textbf{Status} \\
+\hline
+Text Command Accuracy & $\geq$ 90\% & 95\% & $\checkmark$ \\
+\hline
+Navigation Success Rate & $\geq$ 95\% & 89\% & $\triangle$ \\
+\hline
+Safety Performance (Obstacle Avoidance) & 100\% & 100\% & $\checkmark$ \\
+\hline
+Delivery Time Accuracy & $\pm$ 3 minutes & $\pm$ 3 minutes (90\% of deliveries) & $\checkmark$ \\
+\hline
+App Usability Score & $\geq$ 85\% & Informal positive feedback received & $\triangle$ \\
+\hline
+System Reliability & $\geq$ 99\% & 99.7\% connectivity reliability & $\checkmark$ \\
+\hline
+Battery Efficiency & $\geq$ 10 deliveries per charge & Not formally measured & - \\
+\hline
+Order Fulfillment Accuracy & 100\% & Part of 89\% action execution success & $\triangle$ \\
+\hline
+Command Processing Time & $<$ 2 seconds & $<$ 2 seconds (avg. 850ms LLM processing) & $\checkmark$ \\
+\hline
+Robot Control Integration & Functional implementation & Successfully implemented with 94\% command reliability & $\checkmark$ \\
+\hline
+LLM Integration & Operational action generation & Implemented with 95\% accuracy & $\checkmark$ \\
+\hline
+Web/Mobile Application & Functional UI & Complete implementation with React & $\checkmark$ \\
+\hline
+LiDAR Processing & Operational environment mapping & Successfully implemented with 65\% reduction in processing time & $\checkmark$ \\
+\hline
+Safety Validation & Operational protocols & 100\% safety record during testing & $\checkmark$ \\
+\hline
+Neo Cafe Integration & Connected ordering system & Successfully connected & $\checkmark$ \\
+\hline
+\end{tabularx}
+\caption{Comparison of Target Requirements vs. Actual Achievements}
+\label{tab:requirements_vs_achievements}
+\end{table}
+
+\textbf{Status Legend:}
+\begin{itemize}
+    \item $\checkmark$ - Fully achieved or exceeded target
+    \item $\triangle$ - Partially achieved or slightly below target
+    \item $\times$ - Not achieved
+    \item - - Not measured or reported
+\end{itemize}
+
+As the table demonstrates, our project successfully achieved or exceeded most of the key requirements specified in the Statement of Work. The navigation success rate fell slightly below the target, though significant improvements were made throughout the project (from initial 70\% to final 89\%). Some metrics, such as battery efficiency, were not formally measured in our final validation but could be addressed in future work. The overall implementation successfully delivered the core functionalities required by Neo Cafe, with a strong focus on safety and reliability.
+
+\subsection{Risk Management Outcomes}
+
+The following table summarizes how we addressed each of the key risks identified in our Statement of Work:
+
+\renewcommand{\arraystretch}{1.2}
+\begin{table}[h]
+\centering
+\begin{tabularx}{\textwidth}{|X|X|X|X|}
+\hline
+\textbf{Risk Identified in SoW} & \textbf{Original Risk Level} & \textbf{Mitigation Strategies Applied} & \textbf{Final Outcome} \\
+\hline
+LLM generates unsafe robot actions & High & Implemented pre-execution validation with safety constraints; Created supervised action space with predefined safe actions; Added redundant safety checks & Successfully mitigated, contributed to 100\% safety record \\
+\hline
+LiDAR processing latency impacts navigation & High & Optimized point cloud processing algorithms; Implemented GPU acceleration; Reduced resolution in non-critical areas & 65\% reduction in processing delay, navigation improvements \\
+\hline
+Hardware failure (robot, sensors) & Medium & Regular maintenance schedule; Hardware diagnostics; Spare parts inventory & No hardware failures during final testing period \\
+\hline
+Network connectivity issues in building areas & High & Mapped connectivity strength across campus; Implemented store-and-forward mechanisms; Added local processing for critical functions; Coordinated with IT for WiFi improvements & Achieved 99.7\% connectivity reliability \\
+\hline
+User resistance to robot delivery & Medium & Early user involvement in testing; Created engaging robot personality; Provided clear usage benefits in marketing; Offered alternatives for hesitant users & Positive informal feedback, no resistance reported \\
+\hline
+Integration issues with Neo Cafe system & High & Early API testing and documentation; Regular integration meetings; Developed simulation environment for testing & Successful integration with Neo Cafe's ordering system \\
+\hline
+Battery life inadequate for full-day operation & Medium & Optimized movement patterns for efficiency; Implemented intelligent charging schedules; Added battery status monitoring & Not formally measured, but functioned adequately during testing \\
+\hline
+Difficulty navigating crowded areas & High & Developed crowd-aware navigation algorithms; Implemented polite waiting and announcement behaviors; Created alternative routes for busy periods & Navigation success improved to 89\%, still below 95\% target \\
+\hline
+Spilled beverages during delivery & Medium & Designed secure carrying container with stabilization; Optimized movement profiles for smooth transport; Used spill-resistant cups & No spills reported during final testing \\
+\hline
+Project timeline slippage & High & Weekly progress tracking against milestones; Buffer time built into critical path; Clear prioritization of features & Completed on schedule with all critical features \\
+\hline
+\end{tabularx}
+\caption{Risk Management Assessment and Outcomes}
+\label{tab:risk_management}
+\end{table}
+
+The risk management process was largely successful, with most high-level risks effectively mitigated. The most challenging area remained navigation in crowded environments, which contributed to the navigation success rate falling short of our 95\% target. However, our safety-first approach ensured that while navigation occasionally required retries, no safety incidents occurred during testing. The implementation of store-and-forward mechanisms and coordination with campus IT proved particularly effective in addressing connectivity challenges. The project timeline was managed successfully through regular tracking and prioritization, allowing us to deliver all critical functionality on schedule.
+
 \subsection{Performance Metrics}
 
 Our final testing achieved the following key performance metrics:
@@ -540,14 +639,6 @@ Our final testing achieved the following key performance metrics:
         \item Average minimum distance maintained to pedestrians: 0.75m
         \item Emergency stop system validation: 100\% detection rate for sudden obstacles
     \end{itemize}
-    
-    % \item \textbf{Delivery Time Accuracy:} $\pm$3 minutes
-    % \begin{itemize}
-    %     \item 90\% of deliveries arrived within estimated timeframe
-    %     \item Mean absolute error in delivery time prediction: 1.8 minutes
-    %     \item Adaptive route planning improved time prediction accuracy
-    %     \item Learning-based delivery time estimation model achieved R² = 0.86
-    % \end{itemize}
     
     \item \textbf{System Latency Metrics:}
     \begin{itemize}
